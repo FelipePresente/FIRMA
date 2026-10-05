@@ -7,12 +7,14 @@ import org.springframework.http.ResponseCookie;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import firma.auth.CookieService;
 import firma.user.dto.UserResponseDTO;
 import firma.user.dto.UserSignUpDTO;
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("users")
@@ -26,13 +28,13 @@ public class UserController {
     }
 
     @GetMapping
-    // Requires admin role
+    // Requires admin role (will be added)
     public List<UserResponseDTO> findAll() {
         return userService.findAll();
     }
 
     @PostMapping
-    public ResponseEntity<Void> create(UserSignUpDTO data) {
+    public ResponseEntity<Void> create(@Valid @RequestBody UserSignUpDTO data) {
         String token = userService.create(data);
         ResponseCookie jwtCookie = cookieService.generateCookie(token);
 

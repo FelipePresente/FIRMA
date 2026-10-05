@@ -20,6 +20,7 @@ public class CookieServiceTest {
     }
 
     @Test
+    @DisplayName("generateCookie should return configurated cookie with token")
     void generateCookieShouldReturnConfiguredCookieWithToken() {
         String token = "jwt.valid.token";
 
