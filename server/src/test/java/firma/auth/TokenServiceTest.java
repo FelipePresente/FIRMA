@@ -43,7 +43,6 @@ public class TokenServiceTest {
         user.setId(UUID.randomUUID());
 
         String token = tokenService.generateToken(user);
-
         assertThat(token).isNotNull();
         assertThat(token).isNotEmpty();
 
@@ -65,9 +64,7 @@ public class TokenServiceTest {
         user.setId(UUID.randomUUID());
 
         String token = tokenService.generateToken(user);
-
         String result = tokenService.validateToken(token);
-
         assertThat(user.getId().toString()).isEqualTo(result);
     }
 

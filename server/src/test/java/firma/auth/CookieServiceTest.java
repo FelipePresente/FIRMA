@@ -25,7 +25,6 @@ public class CookieServiceTest {
         String token = "jwt.valid.token";
 
         ResponseCookie cookie = cookieService.generateCookie(token);
-
         assertThat(cookie.getName()).isEqualTo("access_token");
         assertThat(cookie.getValue()).isEqualTo(token);
         assertThat(cookie.isHttpOnly()).isTrue();
@@ -39,7 +38,6 @@ public class CookieServiceTest {
     @DisplayName("deleteCookie should return cookie with max age zero and null value")
     void deleteCookieShouldReturnCookieWithMaxAgeZeroAndNullValue() {
         ResponseCookie cookie = cookieService.deleteCookie();
-
         assertThat(cookie.getName()).isEqualTo("access_token");
         assertThat(cookie.getValue()).isEmpty();
         assertThat(cookie.getMaxAge().getSeconds()).isZero();
